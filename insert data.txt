@@ -1,0 +1,103 @@
+db.users.save({                               
+  UID: 'John123',
+  FirstName: 'John',
+  LastName: 'Doe',
+  Email: 'john.doe@company.com',
+  PhoneNumber: '123456789',
+  Skills: ['HTML', 'JavaScript'],
+  Experience: 6,
+  CurrentTitle: 'Web Developer'
+})
+
+db.users.update({                        
+  UID: 'John123'                             
+}, {
+  $push: {                                     
+    Auth: {                                 
+      Username: 'John Doe',                  
+      _id: ObjectId(),                        
+      Password: 'John123!',                               
+      Role: 'Web Developer'       
+    }
+  }
+})
+
+db.users.update({                        
+  UID: 'John123'                             
+}, {
+  $push: {                                     
+    jobhistory: {                                 
+      JobID: 'WebDeveloper256',                  
+      _id: ObjectId(),                        
+      status: 'open',                               
+      Remarks: 'under consideration'       
+    }
+  }
+})
+
+db.users.save({                               
+  UID: 'Jane564',
+  FirstName: 'Jane',
+  LastName: 'wilson',
+  Email: 'jane.wilson@company.com',
+  PhoneNumber: '123456789',
+  Skills: ['Python', 'SQL'],
+  Experience: 8,
+  CurrentTitle: 'Data Analyst'
+})
+
+db.users.update({                        
+  UID: 'Jane564'                             
+}, {
+  $push: {                                     
+    Auth: {                                 
+      Username: 'Jane Wilson',                  
+      _id: ObjectId(),                        
+      Password: 'Jane564!',                               
+      Role: 'Data Analyst'       
+    }
+  }
+})
+
+db.users.update({                        
+  UID: 'Jane564'                             
+}, {
+  $push: {                                     
+    jobhistory: {                                 
+      JobID: 'DataAnalyst256',                  
+      _id: ObjectId(),                        
+      status: 'open',                               
+      Remarks: 'under consideration'       
+    }
+  }
+})
+
+db.jobs.save({                               
+  JobID: 'WebDeveloper889',
+  JobTitle: 'Web Developer',
+  JobDescription: 'Working as part of our high-performing development team, you will focus on crafting and developing Drupal themes, as well as maintaining several microsites. You will handle the translation of UI/UX mockups to actual code and run web projects from design to online publication.',
+  PrimarySkills: 'Contribute to the success of our web operations team; responsible for maintaining the global platform of 6+ companies.',
+  RequiredSkills: 'Make recommendations on new techniques and estimated costs associated with new or revised programs and utilities, taking into consideration personnel, time, and hardware requirements, and make trade-off analyses.',
+  JobSalary: '100K',
+  JobLocation: 'Everett, WA',
+  Experience: '10Yrs',
+  JobStatus: 'Open',
+  HRName: 'Adam H',
+  HREmail: 'adam.h@company.com',
+  Benefits: 'Health insurance, 401(k), Paid time off'
+})
+
+db.jobs.save({                               
+  JobID: 'DataAnalyst586',
+  JobTitle: 'Data Analyst',
+  JobDescription: 'The Insights, Data Engineering and Analytics Team under Data and Platform Group is looking for a passionate, creative, analytical, and experienced digital media analyst who loves big data, curious to identify ways to track the digital experiences, and explore and unveil insights to create a business story and reporting to impact key business decisions.',
+  PrimarySkills: 'Delivering data sets and 1:manyexploration tools that democratize business and customer insights for the product engineering, marketing, and our field teams. This includes common data models and architecture, and data governance.',
+  RequiredSkills: 'Providing actionable intelligence and analytics that will make our products and services better and grow our business. This includes media forecasting and predictive modeling.',
+  JobSalary: '120K',
+  JobLocation: 'Seattle, WA',
+  Experience: '8Yrs',
+  JobStatus: 'Open',
+  HRName: 'Liah M',
+  HREmail: 'liah.m@company.com',
+  Benefits: 'Health insurance, 401(k), Paid time off'
+})

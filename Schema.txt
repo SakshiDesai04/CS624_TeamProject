@@ -1,0 +1,28 @@
+const mongoose = require('mongoose');
+
+const jobSchema = new mongoose.Schema({
+  JobID: {
+    type: String,
+    required: true
+  },
+  Job Title: {
+    type: String,
+    required: true
+  },
+  Job Description: {
+    type: String,
+    required: true
+  },
+  Primary Skills: String,
+  Required Skills: String,
+  Job Salary: String,
+  Job Location: String,
+  Experience: String,
+  Job Status: String,
+  HR Name: String,
+  HR Email: String,
+  Benefits: String,
+    
+});
+
+mongoose.model('job', jobSchema);
