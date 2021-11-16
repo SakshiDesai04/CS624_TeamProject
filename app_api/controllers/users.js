@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
-const viewJobsByUID = (req, res) =>{
+const viewJobsByUID =  (req, res) =>{
     const {UID} = req.params
     if(!UID)
     {
@@ -15,14 +15,14 @@ const viewJobsByUID = (req, res) =>{
         User
        .findById(UID)
        .select('jobHistory')
-       .exec((err,jobhistory) =>
+       .exec((err,jh) =>
        {
-         if(!jobhistory){
+         if(!jh){
              return res.status(200).json({"message":"No Jobs found"});
          }
          else
          {
-            const response = jobhistory.map(result => {
+            const response = jh.jobHistory.map(result => {
                 return {
                   jobID: result.jobID,
                   status: result.status,
@@ -50,9 +50,9 @@ const createUser = (req, res) => {
     experience: req.body.experience,
     currentTitle: req.body.currentTitle,
     authorization: {
-        userName: req.body.userName,
-        password: req.body.password,
-        role: req.body.role
+        userName: req.body.authorization.userName,
+        password: req.body.authorization.password,
+        role: req.body.authorization.role
     }
     },
     (err, user) => {

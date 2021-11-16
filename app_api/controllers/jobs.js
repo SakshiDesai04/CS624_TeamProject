@@ -4,7 +4,7 @@ const Job = mongoose.model('Job');
 const viewJobs = async (req,res) =>{
 try {
     const results = await Job.find()
-      
+    console.log(results)  
     const jobs = results.map(result => {
       return {
         _id : result._id,
