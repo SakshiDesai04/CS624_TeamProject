@@ -1,30 +1,22 @@
 const mongoose = require('mongoose');
 
 const authSchema = new mongoose.Schema({
-  Username: {
+  userName: {
     type: String,
     required: true
   },
-  Password: {
+  password: {
     type: String,
     required: true
   },
-  UID: {
-    type: String,
-    required: true
-  },
-  Role: {
+  role: {
     type: String,
     required: true
   }
 });
 
 const jobhistorySchema = new mongoose.Schema({
-  JobID: {
-    type: String,
-    required: true
-  },
-  UID: {
+  jobID: {
     type: String,
     required: true
   },
@@ -33,28 +25,24 @@ const jobhistorySchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-  UID: {
+  firstName: {
     type: String,
     required: true
   },
-  FirstName: {
+  lastName: {
     type: String,
     required: true
   },
-  LastName: {
+  email: {
     type: String,
     required: true
   },
-  Email: {
-    type: String,
-    required: true
-  },
-  PhoneNumber: Number,
-  Skills: [String],
-  Experience: Number,
-  CurrentTitle: String,
-  Authorization: [authSchema],
-  JobHistory: [jobhistorySchema]
+  phoneNumber: Number,
+  skills: String,
+  experience: Number,
+  currentTitle: String,
+  authorization: authSchema,
+  jobHistory: [jobhistorySchema]
 });
 
 mongoose.model('User', userSchema);
