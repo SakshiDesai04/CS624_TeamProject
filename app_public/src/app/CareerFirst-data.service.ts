@@ -20,7 +20,7 @@ export class CareerFirstService {
     const url: string = `${this.apiBaseUrl}/user/${UID}`;
     const httpOptions = {                                                  
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.storage.getItem('loc8r-token')}`
+        'Authorization': `Bearer ${this.storage.getItem('career-token')}`
       })
     };
     return this.http
@@ -34,7 +34,7 @@ export class CareerFirstService {
     const url: string = `${this.apiBaseUrl}/jobs`;
     const httpOptions = {                                                  
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.storage.getItem('loc8r-token')}`
+        'Authorization': `Bearer ${this.storage.getItem('career-token')}`
       })
     };
     return this.http
@@ -48,7 +48,7 @@ export class CareerFirstService {
     const url: string = `${this.apiBaseUrl}/jobs/${jobID}`;
     const httpOptions = {                                                  
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.storage.getItem('loc8r-token')}`
+        'Authorization': `Bearer ${this.storage.getItem('career-token')}`
       })
     };
     return this.http
@@ -62,7 +62,7 @@ export class CareerFirstService {
     const url: string = `${this.apiBaseUrl}/jobs/${jobID}`;
     const httpOptions = {                                                  
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.storage.getItem('loc8r-token')}`
+        'Authorization': `Bearer ${this.storage.getItem('career-token')}`
       })
     };
     return this.http
