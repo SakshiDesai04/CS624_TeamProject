@@ -15,11 +15,11 @@ export class AuthenticationService {
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage, private careerFirstDataService: CareerFirstService, private router: Router ) { }   
 
   public getToken(): string {                                          
-    return this.storage.getItem('loc8r-token');                        
+    return this.storage.getItem('career-token');                        
   }
 
   public saveToken(token: string): void {                              
-    this.storage.setItem('loc8r-token', token);                        
+    this.storage.setItem('career-token', token);                        
   }
 
   public login(user: UserShort): Promise<any> {                 
@@ -33,7 +33,7 @@ export class AuthenticationService {
   }
 
   public logout(): void {
-    this.storage.removeItem('loc8r-token'); 
+    this.storage.removeItem('career-token'); 
     this.router.navigateByUrl('/');  
     //location.reload();     
   }
