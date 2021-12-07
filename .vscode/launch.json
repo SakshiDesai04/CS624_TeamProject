@@ -13,22 +13,12 @@
             ],
             "type": "pwa-node"
         },
-
-    {
-        "name": "Attach to Chrome",
-        "port": 9222,
-        "request": "attach",
-        "type": "pwa-chrome",
-        "webRoot": "${workspaceFolder}"
-    },
         {
-            "type": "pwa-node",
+            "type": "pwa-chrome",
             "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/bin/www"
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4200/profile",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

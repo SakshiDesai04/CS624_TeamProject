@@ -1,0 +1,8 @@
+<div class="card" *ngFor="let job of jobs">
+    <div>
+        <a routerLink="/jobs/{{job._id}}">Job# {{job._id}}</a>
+        <p>Job Tile: {{job.jobTitle}}</p>
+        <p>Job Description: {{job.jobDescription}}</p>
+    </div>
+  </div>
+  

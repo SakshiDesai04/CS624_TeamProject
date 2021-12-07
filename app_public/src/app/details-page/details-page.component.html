@@ -1,0 +1,18 @@
+<app-page-header [content]="pageContent.header"></app-page-header>       
+<div class="card">
+  <div class="col-12 col-md-8">
+    <p>Job Tile: {{job.jobTitle}}</p>
+    <p>Job Description: {{job.jobDescription}}</p>
+    <p>Primary Skills: {{job.primarySkills}}</p>
+    <p>Required Skills: {{job.requiredSkills}}</p>
+    <p>Salary: {{job.jobSalary}}</p>
+    <p>Location: {{job.jobLocation}}</p>
+    <p>Experience: {{job.experience}}</p>
+    <p>Status: {{job.jobStatus}}</p>
+    <p>HR Name: {{job.hRName}}</p> 
+    <p>HR Email: {{job.hREmail}}</p>
+    <p>Benefits: {{job.benefits}}</p>                 
+  </div>  
+  <button (click)="OnButtonClick()" class="btn btn-primary float-right">Apply Job!</button>    
+  <label>{{message}}</label>                                                
+</div>

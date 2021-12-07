@@ -1,0 +1,69 @@
+import { Inject, Injectable } from '@angular/core';
+import { BROWSER_STORAGE } from './storage';
+import { User } from './user';   
+import { UserShort } from './user';                            
+import { AuthResponse } from './authresponse';             
+import { CareerFirstService } from './CareerFirst-data.service';   
+import { Router } from '@angular/router';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthenticationService {
+
+  constructor(@Inject(BROWSER_STORAGE) private storage: Storage, private careerFirstDataService: CareerFirstService, private router: Router ) { }   
+
+  public getToken(): string {                                          
+    return this.storage.getItem('loc8r-token');                        
+  }
+
+  public saveToken(token: string): void {                              
+    this.storage.setItem('loc8r-token', token);                        
+  }
+
+  public login(user: UserShort): Promise<any> {                 
+    return this.careerFirstDataService.login(user)
+      .then((authResp: AuthResponse) => this.saveToken(authResp.token));
+  }
+
+  public register(user: User): Promise<any> {              
+    return this.careerFirstDataService.register(user)
+      .then((authResp: AuthResponse) => this.saveToken(authResp.token));
+  }
+
+  public logout(): void {
+    this.storage.removeItem('loc8r-token'); 
+    this.router.navigateByUrl('/');  
+    //location.reload();     
+  }
+
+  public isLoggedIn(): boolean {
+    const token: string = this.getToken();                      
+      if (token) {                                              
+        const payload = JSON.parse(atob(token.split('.')[1]));  
+        return payload.exp > (Date.now() / 1000);               
+      } else {
+        return false;
+      }
+    }
+
+  public getCurrentUser(): UserShort {
+    if (this.isLoggedIn()) {
+      const token: string = this.getToken();
+      const { email, role } = JSON.parse(atob(token.split('.')[1]));
+      return { email, role } as UserShort;
+    }
+    return null
+  }
+
+  public getCurrentUserID(): string {
+    if (this.isLoggedIn()) {
+      const token: string = this.getToken();
+      const res = JSON.parse(atob(token.split('.')[1]));
+      return res._id;
+    }
+    return null
+  }
+
+}

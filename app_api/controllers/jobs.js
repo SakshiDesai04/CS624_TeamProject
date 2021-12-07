@@ -135,10 +135,57 @@ const deleteJob = (req, res) => {
     });
   };
 
+  const getJobByID =  (req, res) =>{
+    const {jobID} = req.params
+    if(!jobID)
+    {
+      return res
+      .status(404)
+      .json({'message': 'Not found, Job id is required'}); 
+    }
+
+    try
+    {
+      Job
+       .findById(jobID)
+       .exec((err,job) =>
+       {
+         if(!job){
+             return res.status(200).json({"message":"No Job found"});
+         }
+         else
+         {
+           console.log(typeof(job))
+            const response = {
+              _id : job._id,
+              jobTitle : job.jobTitle,
+              jobDescription : job.jobDescription,
+              primarySkills : job.primarySkills,
+              requiredSkills : job.requiredSkills,
+              jobSalary : job.jobSalary,
+              jobLocation : job.jobLocation,
+              experience : job.experience,
+              jobStatus : job.jobStatus,
+              hRName : job.hRName,
+              hREmail : job.hREmail,
+              benefits : job.benefits
+          }
+            return res.status(200).json(response);
+         }
+       })
+    }
+    catch (err) {
+        res
+          .status(404)
+          .json(err);
+      }
+}
+
 
 module.exports = {
   viewJobs,  
   updateJob,
   deleteJob,
-  CreateJob
+  CreateJob,
+  getJobByID
 };
