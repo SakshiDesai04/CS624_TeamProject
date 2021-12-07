@@ -1,0 +1,102 @@
+<app-page-header [content]="pageContent.header"></app-page-header>
+<div style="align-items: center; display: flex; justify-content: center;">
+<button (click)="clickAddJob()" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Job</button>
+</div>
+<div>
+    &nbsp;
+</div>
+<div class="card" >
+    <table class="table mt-3" style="color: white;">
+        <thead>
+            <tr>
+                <th scope="col">Job ID</th>
+                <th scope="col">Job Description</th>
+                <th scope="col">Primary Skills</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Location</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of allJobs"> 
+                <td>{{job._id}}</td>
+                <td>{{job.jobDescription}}</td>
+                <td>{{job.primarySkills}}</td>
+                <td>{{job.jobSalary}}</td>
+                <td>{{job.jobLocation}}</td>
+                <td>{{job.jobStatus}}</td>
+                <td>
+                <button (click)= "onJobEdit(job)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit Job</button>  
+                <button (click)="DeleteJob(job)" class="btn btn-danger mx-3">Delete Job</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: black;" id="exampleModalLabel">Job Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue"style="color: black;">
+                <div class="mb-3">
+                  <label for="jobTitle" class="form-label">Job Title</label>
+                  <input type="text" formControlName="jobTitle" class="form-control" id="jobTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="jobDescription" class="form-label">Job Description</label>
+                    <input type="text" formControlName="jobDescription" class="form-control" id="jobDescription">
+                  </div>
+                  <div class="mb-3">
+                    <label for="primarySkills" class="form-label">Primary Skills</label>
+                    <input type="text" formControlName="primarySkills" class="form-control" id="primarySkills">
+                  </div>
+                  <div class="mb-3">
+                    <label for="requiredSkills" class="form-label">Required Skills</label>
+                    <input type="text" formControlName="requiredSkills" class="form-control" id="requiredSkills">
+                  </div>
+                  <div class="mb-3">
+                    <label for="jobSalary" class="form-label">Salary</label>
+                    <input type="text" formControlName="jobSalary" class="form-control" id="jobSalary">
+                  </div>
+                  <div class="mb-3">
+                      <label for="jobLocation" class="form-label">Job Location</label>
+                      <input type="text" formControlName="jobLocation" class="form-control" id="jobLocation">
+                    </div>
+                    <div class="mb-3">
+                      <label for="experience" class="form-label">Experience</label>
+                      <input type="text" formControlName="experience" class="form-control" id="experience">
+                    </div>
+                    <div class="mb-3">
+                      <label for="jobStatus" class="form-label">Job Status</label>
+                      <input type="text" formControlName="jobStatus" class="form-control" id="jobStatus">
+                    </div>
+                    <div class="mb-3">
+                        <label for="hRName" class="form-label">HR Name</label>
+                        <input type="text" formControlName="hRName" class="form-control" id="hRName">
+                      </div>
+                      <div class="mb-3">
+                        <label for="hREmail" class="form-label">HR Email</label>
+                        <input type="text" formControlName="hREmail" class="form-control" id="hREmail">
+                      </div>
+                      <div class="mb-3">
+                        <label for="benefits" class="form-label">Benefits</label>
+                        <input type="text" formControlName="benefits" class="form-control" id="benefits">
+                      </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id ="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf="showAdd"  (click)= "InsertJobDetails()" class="btn btn-primary">Add Job</button>
+          <button type="button" *ngIf="showupdate"  (click)= "UpdateJobDetails()" class="btn btn-primary">Update Job</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
